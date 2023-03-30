@@ -6,29 +6,44 @@ namespace ChemicalApp
     class Program
     {
         // global variables
-        static List<string> chemicals = new List<string>() { "Cyanide", "Propane" };
+        static List<string> chemicals = new List<string>() { "Cyanide", "Propane", "Alcohol", "Chlorine" };
         // methods and\or functions
+        // checks if an integer entered by a user is within a specific range
+        static int CheckInt(string question, int min, int max)
+        {
+            Console.WriteLine(question);
+
+            while (true)
+            {
+                int userInt = Convert.ToInt32(Console.ReadLine());
+
+                if (userInt >= min && userInt <= max)
+                {
+                    return userInt;
+                }
+                Console.WriteLine($"Error: Enter a number between {min} and {max}");
+            }
+
+        }
 
         // Calculate the efficiency of a chemical 
-
         static void OneChemical()
         {
             // Decide which chemical is used
-            Console.WriteLine("Choose a chemical:\n" +
+            int chemical = CheckInt("Choose a chemical:\n" +
                 "1. Cyanide\n" +
                 "2. Propane\n" +
-                "3. Quit\n");
-
-            int chemical = Convert.ToInt32( Console.ReadLine());
+                "3. Alcohol\n" +
+                "4. Chlorine\n" +
+                "5. Quit\n", 1, 5);
 
             float sumEfficiencies = 0;
             // repeat the test 5 times
             for (int i = 0; i < 5; i++)
             {
                 // Enter and store amount of germs in sample
-                Console.WriteLine("Please enter an initial germ count in a sample");
 
-                int germCount = Convert.ToInt32(Console.ReadLine());
+                int germCount = CheckInt("Please enter an initial germ count in a sample", 100, 9000);
 
                 // Display an amount of time passed
                 Console.WriteLine("--- 45 minutes passed ---");
@@ -52,9 +67,15 @@ namespace ChemicalApp
 
         static void Main(string[] args)
         {
-            OneChemical();
             // Loop OneChemical() until the user has tested all their chemicals
-
+            string flag = "";
+            while (!flag.Equals("XXX"))
+            {
+                OneChemical();
+                Console.WriteLine("Press <Enter> to add another chemical or type 'XXX' to end");
+                flag = Console.ReadLine();
+            }
+            
             // Display the most and least effective chemical
         }
     }
