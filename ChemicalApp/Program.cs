@@ -8,6 +8,11 @@ namespace ChemicalApp
         // global variables
         static List<string> chemicals = new List<string>() { "Cyanide", "Propane", "Alcohol", "Chlorine" };
         static int flag = 0;
+        static int topChemical = 0;
+        static float topEfficiency = 0;
+        static int lowChemical = 9000;
+        static float lowEfficiency = 9000;
+
 
         // methods and\or functions
 
@@ -82,7 +87,19 @@ namespace ChemicalApp
 
                 // Display and its final efficiency rating
                 Console.WriteLine($"Chemical {chemicals[chemical - 1]} has an efficiency rating of {finalEficiency}.");
+
+                if (finalEficiency > topEfficiency)
+                {
+                    topEfficiency = finalEficiency;
+                    topChemical = chemical;
+                }
+                if (finalEficiency < lowEfficiency)
+                {
+                    lowEfficiency = finalEficiency;
+                    lowChemical = chemical;
+                }
             }
+            
         }
 
         static void Main(string[] args)
@@ -93,8 +110,11 @@ namespace ChemicalApp
             {
                 OneChemical();
             }
-            
+
             // Display the most and least effective chemical
+            Console.WriteLine($"The most efficent chemical is {chemicals[topChemical - 1]} with a rating of {topEfficiency}.\nThe least efficient chemical is {chemicals[lowChemical - 1]} with a rating of {lowEfficiency}.\n");
+            
+            
         }
     }
 }
