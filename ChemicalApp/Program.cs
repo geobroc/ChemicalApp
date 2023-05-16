@@ -31,11 +31,11 @@ namespace ChemicalApp
                     {
                         return userInt;
                     }
-                    Console.WriteLine($"Error: Enter a number between {min} and {max}");
+                    Console.WriteLine($"Error: Enter a number between {min} and {max}\n");
                 }
                 catch
                 {
-                    Console.WriteLine($"Error: Enter a number between {min} and {max}");
+                    Console.WriteLine($"Error: Enter a number between {min} and {max}\n");
                 }
                 
             }
@@ -85,8 +85,10 @@ namespace ChemicalApp
                 float finalEficiency = (float)sumEfficiencies / 5;
                 finalEficiency = (float)Math.Round(finalEficiency, 2);
 
+                Console.ReadLine();
+                Console.Clear();
                 // Display and its final efficiency rating
-                Console.WriteLine($"Chemical {chemicals[chemical - 1]} has an efficiency rating of {finalEficiency}.");
+                Console.WriteLine($"Chemical {chemicals[chemical - 1]} has an efficiency rating of {finalEficiency}.\n");
 
                 if (finalEficiency > topEfficiency)
                 {
@@ -104,13 +106,33 @@ namespace ChemicalApp
 
         static void Main(string[] args)
         {
-            // Loop OneChemical() until the user has tested all their chemicals
+            Console.WriteLine(@" _____ _                    _           _    ___              " + "\n" +
+                              @"/  __ \ |                  (_)         | |  / _ \             " + "\n" +
+                              @"| /  \/ |__   ___ _ __ ___  _  ___ __ _| | / /_\ \_ __  _ __  " + "\n" +
+                              @"| |   | '_ \ / _ \ '_ ` _ \| |/ __/ _` | | |  _  | '_ \| '_ \ " + "\n" +
+                              @"| \__/\ | | |  __/ | | | | | | (_| (_| | | | | | | |_) | |_) |" + "\n" +
+                              @" \____/_| |_|\___|_| |_| |_|_|\___\__,_|_| \_| |_/ .__/| .__/ " + "\n" +
+                              @"                                                 | |   | |    " + "\n" +
+                              @"                                                 |_|   |_|    " + "\n");
+            Console.WriteLine("------------------------------------------------------------------------");
+            Console.WriteLine("Chemical app is an app that is used to test chemcials.\n" +
+                "Select a chemical and choose an amount of germs and test 5 times with the chemical.\n" +
+                "Then have a choice to test another chemical or stop.\n");
+            Console.WriteLine("------------------------------------------------------------------------");
+
+            Console.WriteLine("Press Enter to continue");
+            Console.ReadLine();
+            Console.Clear();
+
+        // Loop OneChemical() until the user has tested all their chemicals
             
             while (flag != 5)
             {
                 OneChemical();
             }
 
+            Console.ReadLine();
+            Console.Clear();
             // Display the most and least effective chemical
             Console.WriteLine($"The most efficent chemical is {chemicals[topChemical - 1]} with a rating of {topEfficiency}.\nThe least efficient chemical is {chemicals[lowChemical - 1]} with a rating of {lowEfficiency}.\n");
             
